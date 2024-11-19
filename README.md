@@ -15,6 +15,7 @@ best practices and ensure optimal performance of the website.
 # Connect to the Instance:
 
 # Update the System:
+sudo apt update && sudo apt upgrade -y
 ![image](https://github.com/user-attachments/assets/b56218c3-ea6c-4c35-8536-f9e44803590b)
 
 # 2. Install the LEMP Stack
@@ -25,56 +26,21 @@ sudo apt install nginx -y
 # Install MySQL/MariaDB:
 sudo apt install mysql-server -y 
 sudo mysql_secure_installation
+
 Set a strong root password and follow the prompts for security.
-
-===========================
-
-# BrainSt-Assignment
-
-# Task:
-Your task is to set up an automated deployment process for a WordPress website
-using Nginx as the web server, LEMP (Linux, Nginx, MySQL, PHP) stack, and GitHub
-Actions as the CI/CD automation tool. The deployment process should follow security
-best practices and ensure optimal performance of the website.
-
-1. Provision a Virtual Private Server (VPS) on AWS:
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-
-# Update the System:
-sudo apt update && sudo apt upgrade -y
-![alt text](image-5.png)
-![alt text](image-4.png)
-
-# 2. Install the LEMP Stack
-Install Nginx:
-sudo apt install nginx -y
-![alt text](image-6.png)
-![alt text](image-17.png)
-
-# Install MySQL/MariaDB:
-
-sudo apt install mysql-server -y 
-sudo mysql_secure_installation
-
-![alt text](image-7.png)
-![alt text](image-8.png)
-
 
 # Install PHP:
 Configure Nginx to Use PHP:
 
 sudo apt install php-fpm php-mysql -y
-![alt text](image-9.png)
+
 
 
 
 # Create a new configuration file for WordPress:
 
 sudo nano /etc/nginx/sites-available/wordpress
-![alt text](image-10.png)
+
 Add the following configuration:
 
 server {
@@ -104,8 +70,7 @@ server {
 sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
-![alt text](image-11.png)
-![alt text](image-12.png)
+
 
 
 # 3. Set Up WordPress
@@ -115,13 +80,13 @@ cd /tmp
 wget https://wordpress.org/latest.tar.gz
 tar -xvf latest.tar.gz
 sudo mv wordpress /var/www/
-![alt text](image-14.png)
+
 
 # Set Permissions:
 
 sudo chown -R www-data:www-data /var/www/wordpress 
 sudo chmod -R 755 /var/www/wordpress
-![alt text](image-13.png)
+
 
 Create a Database for WordPress:
 
@@ -132,11 +97,10 @@ sudo mysql -u root -p
 
 CREATE DATABASE wordpress;
 CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'Subham@966';
-![alt text](image-15.png)
 GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
-![alt text](image-16.png)
+
 
 # Copy the sample configuration file:
 
@@ -152,7 +116,7 @@ sudo nano /var/www/wordpress/wp-config.php
 define('DB_NAME', 'wordpress');
 define('DB_USER', 'wordpressuser');
 define('DB_PASSWORD', 'Subham@966');
-![alt text](image-18.png)
+
 
 # Navigate to http://your-ec2-public-ip to complete the WordPress setup.
 
@@ -161,9 +125,8 @@ define('DB_PASSWORD', 'Subham@966');
 Install Certbot for SSL/TLS:
 
 sudo apt install certbot python3-certbot-nginx -y 
-![alt text](image-19.png)
 
-sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+sudo certbot --nginx -d ap4ashutosh.xyz -d www.ap4ashutosh.xyz
 
 Follow the prompts to obtain and configure the SSL certificate.
 
