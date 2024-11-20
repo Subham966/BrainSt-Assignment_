@@ -30,16 +30,6 @@ sudo mysql_secure_installation
 ![image](https://github.com/user-attachments/assets/d79f4b91-86b1-44ed-8e87-55c091565cc1)
 
 Set a strong root password and follow the prompts for security.
-1. Provision a Virtual Private Server (VPS) on AWS:
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-
-# Update the System:
-sudo apt update && sudo apt upgrade -y
-![alt text](image-5.png)
-![alt text](image-4.png)
 
 # 2. Install the LEMP Stack
 Install Nginx:
@@ -47,34 +37,23 @@ sudo apt install nginx -y
 ![alt text](image-6.png)
 ![alt text](image-17.png)
 
-# Install MySQL/MariaDB:
-
-sudo apt install mysql-server -y 
-sudo mysql_secure_installation
-
-![alt text](image-7.png)
-![alt text](image-8.png)
-
-
 # Install PHP:
 Configure Nginx to Use PHP:
 
 sudo apt install php-fpm php-mysql -y
 
-![alt text](image-9.png)
-
-
+![image](https://github.com/user-attachments/assets/fa0e6114-f2f2-4d80-bd21-b96a5336e577)
 
 # Create a new configuration file for WordPress:
 
 sudo nano /etc/nginx/sites-available/wordpress
+![image](https://github.com/user-attachments/assets/7aee093a-efed-44fd-9660-b2477649b317)
 
-![alt text](image-10.png)
+
 Add the following configuration:
 
 server {
     listen 80;
-    server_name your-domain.com www.your-domain.com;
     server_name ap4ashutosh.xyz www.ap4ashutosh.xyz;
     root /var/www/wordpress;
 
@@ -101,8 +80,9 @@ sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 
-![alt text](image-11.png)
-![alt text](image-12.png)
+![image](https://github.com/user-attachments/assets/d91ad831-b35f-4e36-93b4-616539575c31)
+![image](https://github.com/user-attachments/assets/7ab29218-46c6-4ede-afaf-2b11574c36d4)
+
 
 
 # 3. Set Up WordPress
@@ -113,7 +93,8 @@ wget https://wordpress.org/latest.tar.gz
 tar -xvf latest.tar.gz
 sudo mv wordpress /var/www/
 
-![alt text](image-14.png)
+![image](https://github.com/user-attachments/assets/ca84674a-c75b-4563-b9c2-9ae833c5d06b)
+
 
 # Set Permissions:
 
@@ -122,7 +103,8 @@ sudo chmod -R 755 /var/www/wordpress
 
 
 Create a Database for WordPress:
-![alt text](image-13.png)
+![image](https://github.com/user-attachments/assets/411f28bd-5f50-4462-8d98-9f0ed40aa6da)
+
 
 # Create a Database for WordPress:
 
@@ -137,7 +119,8 @@ GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
 
-![alt text](<mysql setup.png>)
+![image](https://github.com/user-attachments/assets/abb65c90-7577-49ae-b2db-931ea77e59fd)
+
 
 # Copy the sample configuration file:
 
@@ -147,8 +130,9 @@ cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
 
 sudo nano /var/www/wordpress/wp-config.php
 
-![alt text](image-22.png)
-![alt text](image-21.png)
+![image](https://github.com/user-attachments/assets/0cb72ab7-6162-459b-9a01-d7b723da8848)
+![image](https://github.com/user-attachments/assets/0090d70c-9771-4bd4-8db7-58365ca9ea65)
+
 
 # Update the database details:
 
@@ -156,6 +140,7 @@ define('DB_NAME', 'wordpress');
 define('DB_USER', 'wordpressuser');
 define('DB_PASSWORD', 'Subham@966');
 
+![image](https://github.com/user-attachments/assets/2b6a6bb6-c8d4-4207-9712-2d971ffc2d27)
 
 # Navigate to http://your-ec2-public-ip to complete the WordPress setup.
 
