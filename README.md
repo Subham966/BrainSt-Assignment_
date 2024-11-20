@@ -21,9 +21,10 @@ sudo apt update && sudo apt upgrade -y
 ![image](https://github.com/user-attachments/assets/b56218c3-ea6c-4c35-8536-f9e44803590b)
 
 # 2. Install the LEMP Stack
-# Install Nginx:
+# Install Apache2:
 ```bash
-sudo apt install nginx -y 
+sudo apt update
+sudo apt install apache2 -y 
 ```
 
 # Install MySQL/MariaDB:
