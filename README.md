@@ -130,7 +130,6 @@ cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
 
 sudo nano /var/www/wordpress/wp-config.php
 
-![image](https://github.com/user-attachments/assets/0cb72ab7-6162-459b-9a01-d7b723da8848)
 ![image](https://github.com/user-attachments/assets/0090d70c-9771-4bd4-8db7-58365ca9ea65)
 
 
@@ -141,10 +140,6 @@ define('DB_USER', 'wordpressuser');
 define('DB_PASSWORD', 'Subham@966');
 
 ![image](https://github.com/user-attachments/assets/2b6a6bb6-c8d4-4207-9712-2d971ffc2d27)
-
-# Navigate to http://your-ec2-public-ip to complete the WordPress setup.
-
-![alt text](image-18.png)
 
 # Installing Additional PHP Extensions
 sudo apt update
@@ -163,8 +158,10 @@ sudo nano /etc/apache2/sites-available/wordpress.conf
 </VirtualHost>
 
 
-![alt text](3.png)
-![alt text](2.png)
+![image](https://github.com/user-attachments/assets/b18eaf7a-0b30-4905-b54d-579867b63e57)
+
+![image](https://github.com/user-attachments/assets/a74cba7f-fd0f-4b8f-865f-38e0faf8f2db)
+
 
 sudo a2enmod rewrite
 sudo apache2ctl configtest
@@ -180,7 +177,8 @@ mkdir /tmp/wordpress/wp-content/upgrade
 sudo cp -a /tmp/wordpress/. /var/www/wordpress
 
 # Navigate to http://your-ec2-public-ip to complete the WordPress setup.
-![alt text](image-20.png)
+![image](https://github.com/user-attachments/assets/4a95b73d-f933-46ac-9844-21dea22f54ff)
+
 
 # 4. Secure the Website
 Install Certbot for SSL/TLS:
@@ -192,38 +190,38 @@ sudo certbot --nginx -d ap4ashutosh.xyz -d www.ap4ashutosh.xyz
 
 Follow the prompts to obtain and configure the SSL certificate.
 
-# Set Up Firewall:
-
-sudo ufw allow OpenSSH 
-sudo ufw allow 'Nginx Full' 
-sudo ufw enable
-
-OR,
+!! OR !!
 
 # ACM with LoadBalancer with Route53 :
-![alt text](image-23.png)
-![alt text](image-24.png)
-![alt text](image-26.png)
-![alt text](image-25.png)
-![alt text](image-28.png)
-![alt text](image-27.png)
+![image](https://github.com/user-attachments/assets/07537834-215d-444b-bdd4-c03013036a9e)
+
+![image](https://github.com/user-attachments/assets/1ec85c4c-adf3-4553-b4bc-d07666f6c7f7)
+
+![image](https://github.com/user-attachments/assets/292ec8a1-3242-4557-a38e-7e8fd68f7a69)
+
+![image](https://github.com/user-attachments/assets/86e50cb1-a132-4b59-94e5-e0a387d82e2d)
+
+![image](https://github.com/user-attachments/assets/97887feb-b107-4ecc-b392-8222c8b6b123)
+
+![image](https://github.com/user-attachments/assets/75580048-20a9-45e4-8349-1c663a7eb85e)
+
 
 # Hit the LB endpoint:
-![alt text](image-30.png)
-![alt text](image-29.png)
+![image](https://github.com/user-attachments/assets/0e4ba8f4-2794-4421-9a0f-bc84e4782f11)
+
+![image](https://github.com/user-attachments/assets/1c86f94d-37b5-465e-817b-9ab104986eb3)
+
 
 # 5. Automate Deployment with GitHub Actions
 Set Up GitHub Repository:
 
 # Create a new repository and clone it locally:
 
-git clone https://github.com/your-username/wordpress-deployment.git
-
-Add your WordPress files and commit:
-
-cd wordpress-deployment 
-git add . 
-git commit -m "Initial commit" 
+git clone https://github.com/Subham966/BrainSt-Assignment_.git
+cd BrainSt-Assignment_
+cp -r /path/to/wordpress/* .  
+git add .
+git commit -m "Initial commit with WordPress files"
 git push origin main
 
 
@@ -255,15 +253,5 @@ jobs:
         rsync -avz --delete ./ ubuntu@your-ec2-public-ip:/var/www/wordpress
         ssh ubuntu@your-ec2-public-ip "sudo systemctl restart nginx"
 
-# Add SSH_PRIVATE_KEY in the repository's Settings > Secrets and variables > Actions.
 
-# Test the Workflow:
-
-# Push changes to the main branch and verify the deployment.
-
-
-# 
-
-
-# 
-# 
+![image](https://github.com/user-attachments/assets/1c86f94d-37b5-465e-817b-9ab104986eb3)
