@@ -16,6 +16,8 @@ best practices and ensure optimal performance of the website.
 
 # Update the System:
 sudo apt update && sudo apt upgrade -y
+![alt text](image-5.png)
+![alt text](image-4.png)
 ![image](https://github.com/user-attachments/assets/b56218c3-ea6c-4c35-8536-f9e44803590b)
 
 # 2. Install the LEMP Stack
