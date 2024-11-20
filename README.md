@@ -16,8 +16,6 @@ best practices and ensure optimal performance of the website.
 
 # Update the System:
 sudo apt update && sudo apt upgrade -y
-![alt text](image-5.png)
-![alt text](image-4.png)
 ![image](https://github.com/user-attachments/assets/b56218c3-ea6c-4c35-8536-f9e44803590b)
 
 # 2. Install the LEMP Stack
@@ -28,6 +26,8 @@ sudo apt install nginx -y
 # Install MySQL/MariaDB:
 sudo apt install mysql-server -y 
 sudo mysql_secure_installation
+![image](https://github.com/user-attachments/assets/537bac01-5f9d-400b-880c-6f699d710dff)
+![image](https://github.com/user-attachments/assets/d79f4b91-86b1-44ed-8e87-55c091565cc1)
 
 Set a strong root password and follow the prompts for security.
 1. Provision a Virtual Private Server (VPS) on AWS:
