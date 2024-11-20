@@ -51,7 +51,7 @@ sudo nano /etc/nginx/sites-available/wordpress
 
 
 Add the following configuration:
-
+```bash
 server {
     listen 80;
     server_name ap4ashutosh.xyz www.ap4ashutosh.xyz;
@@ -75,11 +75,14 @@ server {
     }
 }
 
+```
 
+```bash
 sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 
+```
 ![image](https://github.com/user-attachments/assets/d91ad831-b35f-4e36-93b4-616539575c31)
 ![image](https://github.com/user-attachments/assets/7ab29218-46c6-4ede-afaf-2b11574c36d4)
 
@@ -87,12 +90,12 @@ sudo systemctl restart nginx
 
 # 3. Set Up WordPress
 Download WordPress:
-
+```bash
 cd /tmp
 wget https://wordpress.org/latest.tar.gz
 tar -xvf latest.tar.gz
 sudo mv wordpress /var/www/
-
+```
 ![image](https://github.com/user-attachments/assets/ca84674a-c75b-4563-b9c2-9ae833c5d06b)
 
 
