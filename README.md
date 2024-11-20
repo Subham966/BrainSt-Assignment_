@@ -36,14 +36,6 @@ sudo mysql_secure_installation
 
 Set a strong root password and follow the prompts for security.
 
-# 2. Install the LEMP Stack
-Install Nginx:
-```bash
-sudo apt install nginx -y
-```
-![alt text](image-6.png)
-![alt text](image-17.png)
-
 # Install PHP:
 Configure Nginx to Use PHP:
 ```bash
