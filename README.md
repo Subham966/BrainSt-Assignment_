@@ -15,17 +15,22 @@ best practices and ensure optimal performance of the website.
 # Connect to the Instance:
 
 # Update the System:
+```bash
 sudo apt update && sudo apt upgrade -y
+```
 ![image](https://github.com/user-attachments/assets/b56218c3-ea6c-4c35-8536-f9e44803590b)
 
 # 2. Install the LEMP Stack
 # Install Nginx:
+```bash
 sudo apt install nginx -y 
-
+```
 
 # Install MySQL/MariaDB:
+```bash
 sudo apt install mysql-server -y 
 sudo mysql_secure_installation
+```
 ![image](https://github.com/user-attachments/assets/537bac01-5f9d-400b-880c-6f699d710dff)
 ![image](https://github.com/user-attachments/assets/d79f4b91-86b1-44ed-8e87-55c091565cc1)
 
@@ -33,19 +38,21 @@ Set a strong root password and follow the prompts for security.
 
 # 2. Install the LEMP Stack
 Install Nginx:
+```bash
 sudo apt install nginx -y
+```
 ![alt text](image-6.png)
 ![alt text](image-17.png)
 
 # Install PHP:
 Configure Nginx to Use PHP:
-
+```bash
 sudo apt install php-fpm php-mysql -y
-
+```
 ![image](https://github.com/user-attachments/assets/fa0e6114-f2f2-4d80-bd21-b96a5336e577)
 
 # Create a new configuration file for WordPress:
-
+```bash
 sudo nano /etc/nginx/sites-available/wordpress
 ![image](https://github.com/user-attachments/assets/7aee093a-efed-44fd-9660-b2477649b317)
 
@@ -81,7 +88,6 @@ server {
 sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
-
 ```
 ![image](https://github.com/user-attachments/assets/d91ad831-b35f-4e36-93b4-616539575c31)
 ![image](https://github.com/user-attachments/assets/7ab29218-46c6-4ede-afaf-2b11574c36d4)
@@ -100,58 +106,62 @@ sudo mv wordpress /var/www/
 
 
 # Set Permissions:
-
+```bash
 sudo chown -R www-data:www-data /var/www/wordpress 
 sudo chmod -R 755 /var/www/wordpress
-
+```
 
 Create a Database for WordPress:
 ![image](https://github.com/user-attachments/assets/411f28bd-5f50-4462-8d98-9f0ed40aa6da)
 
 
 # Create a Database for WordPress:
-
+```bash
 sudo mysql -u root -p
-
+```
 
 # Run the following MySQL commands:
-
+```bash
 CREATE DATABASE wordpress;
 CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'Subham@966';
 GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
-
+```
 ![image](https://github.com/user-attachments/assets/abb65c90-7577-49ae-b2db-931ea77e59fd)
 
 
 # Copy the sample configuration file:
-
+```bash
 cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
-
+```
 # Edit the configuration file:
-
+```bash
 sudo nano /var/www/wordpress/wp-config.php
-
+```
 ![image](https://github.com/user-attachments/assets/0090d70c-9771-4bd4-8db7-58365ca9ea65)
 
 
 # Update the database details:
-
+```bash
 define('DB_NAME', 'wordpress');
 define('DB_USER', 'wordpressuser');
 define('DB_PASSWORD', 'Subham@966');
-
+```
 ![image](https://github.com/user-attachments/assets/2b6a6bb6-c8d4-4207-9712-2d971ffc2d27)
 
-# Installing Additional PHP Extensions
+# Installing Additional PHP Extensions:
+```bash
 sudo apt update
 sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
 sudo systemctl restart apache2
+```
 
 # Enabling .htaccess Overrides:
+```bash
 sudo nano /etc/apache2/sites-available/wordpress.conf
-
+```
+```bash
 <VirtualHost *:80>
 . . .
     <Directory /var/www/wordpress/>
@@ -159,18 +169,20 @@ sudo nano /etc/apache2/sites-available/wordpress.conf
     </Directory>
 . . .
 </VirtualHost>
-
+```
 
 ![image](https://github.com/user-attachments/assets/b18eaf7a-0b30-4905-b54d-579867b63e57)
 
 ![image](https://github.com/user-attachments/assets/a74cba7f-fd0f-4b8f-865f-38e0faf8f2db)
 
-
+```bash
 sudo a2enmod rewrite
 sudo apache2ctl configtest
 sudo systemctl restart apache2
+```
 
 # Downloading WordPress:
+```bash
 cd /tmp
 curl -O https://wordpress.org/latest.tar.gz
 tar xzvf latest.tar.gz
@@ -178,19 +190,20 @@ touch /tmp/wordpress/.htaccess
 cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
 mkdir /tmp/wordpress/wp-content/upgrade
 sudo cp -a /tmp/wordpress/. /var/www/wordpress
-
+```
 # Navigate to http://your-ec2-public-ip to complete the WordPress setup.
 ![image](https://github.com/user-attachments/assets/4a95b73d-f933-46ac-9844-21dea22f54ff)
 
 
 # 4. Secure the Website
 Install Certbot for SSL/TLS:
-
+```bash
 sudo apt install certbot python3-certbot-nginx -y 
 ![alt text](image-19.png)
-
+```
+```bash
 sudo certbot --nginx -d ap4ashutosh.xyz -d www.ap4ashutosh.xyz
-
+```
 Follow the prompts to obtain and configure the SSL certificate.
 
 !! OR !!
@@ -219,19 +232,20 @@ Follow the prompts to obtain and configure the SSL certificate.
 Set Up GitHub Repository:
 
 # Create a new repository and clone it locally:
-
+```bash
 git clone https://github.com/Subham966/BrainSt-Assignment_.git
 cd BrainSt-Assignment_
 cp -r /path/to/wordpress/* .  
 git add .
 git commit -m "Initial commit with WordPress files"
 git push origin main
-
+```
 
 # Create a GitHub Actions Workflow:
 
 Add a .github/workflows/deploy.yml file:
 
+```bash
 name: Deploy WordPress
 
 on:
@@ -256,5 +270,5 @@ jobs:
         rsync -avz --delete ./ ubuntu@your-ec2-public-ip:/var/www/wordpress
         ssh ubuntu@your-ec2-public-ip "sudo systemctl restart nginx"
 
-
+```
 ![image](https://github.com/user-attachments/assets/1c86f94d-37b5-465e-817b-9ab104986eb3)
